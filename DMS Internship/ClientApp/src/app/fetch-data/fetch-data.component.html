@@ -13,10 +13,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-  
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let DMS of forecasts">
+      <td>{{ DMS.vehicleID }}</td>
+
+      <td>{{ DMS.MakeYear }}</td>
+      <td>{{ DMS.Models }}</td>
+
+
+      <td>{{ DMS.Models }}</td>
+
     </tr>
   </tbody>
 </table>
