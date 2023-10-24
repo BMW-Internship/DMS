@@ -25,3 +25,6 @@ app.MapControllerRoute(
 app.MapFallbackToFile("index.html");
 
 app.Run();
+
+builder.Services.AddTransient(x =>
+  new MySqlConnection(builder.Configuration.GetConnectionString("Default")));
