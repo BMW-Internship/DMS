@@ -23,8 +23,7 @@ interface DMS {
 
   Model: string;
 
-  Model: string;
-  Price: number;
+  price: number;
 }
 
 

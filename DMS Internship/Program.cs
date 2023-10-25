@@ -1,7 +1,5 @@
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
-using System.Runtime.InteropServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,19 +34,5 @@ app.MapFallbackToFile("index.html");
 
 app.Run();
 
-builder.Services.AddTransient(x =>
-  new MySqlConnection(builder.Configuration.GetConnectionString("Default")));
 
-app.MapGet("/models/Price/{vehicleID}", (int vehicleID, [FromServices] MySqlConnection connection) =>
-{
-    var BMW = connection.Query<string>("select models from DMS where vehicleID = @vehicleID", new { vehicleID });
-    if (BMW.FirstOrDefault() is string models)
-        return Results.Ok(new { Name = models });
-  
-
-    else
-        return Results.NotFound();
-    
-
-});
 
