@@ -19,11 +19,11 @@ interface DMS {
 
   vehicleID: bigint;
 
-  makeYear: Date;
+  make: string;
+
+  Model: string;
 
   Price: number;
-
-  Models: string;
 }
 
 

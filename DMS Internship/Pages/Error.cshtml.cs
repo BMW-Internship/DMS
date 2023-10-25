@@ -24,23 +24,23 @@ namespace DMS_Internship.Pages
         }
 
       
-public class ErrorPagesController
-        {
-            @RequestMapping("/404")
-                 @RequestMapping("/403")
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public String forbidden()
-            {
-                return "/error/403";
-            }
+//public class ErrorPagesController
+//        {
+//            @RequestMapping("/404")
+//                 @RequestMapping("/403")
+//    @ResponseStatus(HttpStatus.FORBIDDEN)
+//    public String forbidden()
+//            {
+//                return "/error/403";
+//            }
 
-            @RequestMapping("/500")
-        @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-    public String internalServerError()
-            {
-                return "/error/500";
-            }
+//            @RequestMapping("/500")
+//        @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+    //public String internalServerError()
+    //        {
+    //            return "/error/500";
+    //        }
 
-        }
+    //    }
     }
-}   
+}
