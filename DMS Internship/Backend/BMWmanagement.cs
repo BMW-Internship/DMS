@@ -4,10 +4,9 @@ namespace DMS_Internship.Backend
     {
         public int vehicleID { get; set; }
 
-        public int makeYear {get;set;}
+        public int make {get;set;}
 
+        public string? Model { get; set; }
         public float Price { get; set; }
-
-        public string? Models { get; set; }
     }
 }

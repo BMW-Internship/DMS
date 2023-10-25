@@ -25,7 +25,7 @@ namespace DMS_Internship.Backend.Controllers
             _logger = logger;
             var connection = new SqliteConnection("Data Source=DMS.db");
             connection.Open();
-            connection.Execute();
+           // connection.Execute();
 
         }
 
@@ -37,7 +37,7 @@ namespace DMS_Internship.Backend.Controllers
             {
                 //Price = models[Random.Shared.Next(models.Length)],
                 
-                Models = models[Random.Shared.Next(models.Length)]
+                Model = models[Random.Shared.Next(models.Length)]
             })
             .ToArray();
         }
