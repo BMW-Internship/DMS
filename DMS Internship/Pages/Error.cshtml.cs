@@ -36,11 +36,11 @@ namespace DMS_Internship.Pages
 
 //            @RequestMapping("/500")
 //        @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-//    public String internalServerError()
-//            {
-//                return "/error/500";
-//            }
+    //public String internalServerError()
+    //        {
+    //            return "/error/500";
+    //        }
 
-//        }
+    //    }
     }
-}   
+}
