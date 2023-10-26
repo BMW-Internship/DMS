@@ -1,7 +1,9 @@
 using Dapper;
+using DMS_Internship.Backend.VehicleServices;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<VehicleService>();
 
 // Add services to the container.
 

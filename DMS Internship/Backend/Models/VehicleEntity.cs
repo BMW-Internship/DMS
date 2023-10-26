@@ -1,21 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DMS_Internship.Backend
+namespace DMS_Internship.Backend.Models
 {
-    public class vehicleDbContext
+    public class VehicleEntity
     {
 
         [Required]
-        public int vehicleID { get; set; }
+        public int VehicleId { get; set; }
 
         [Required, MaxLength(255)]
-        public string make { get; set; } = "";
+        public string Make { get; set; } = "";
 
         [Required, MaxLength(255)]
         public string? Model { get; set; } = "";
 
         [Required]
-        public float price { get; set; }
+        public float Price { get; set; }
     }
 }
 
