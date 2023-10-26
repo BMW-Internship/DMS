@@ -64,7 +64,7 @@ namespace DMS_Internship.Backend.Controllers
                     connection.Open();
 
                     string sql = "SELECT * FROM Vehicle WHERE vehicleid=@vehicleid";
-                    var vehicle = connection.QuerySingle<Vehicle>(sql, new { vehicleID = vehicleID });
+                    var vehicle = connection.QuerySingle<Vehicle>(sql, new { vehicleid = vehicleID });
                     if(vehicle != null)
                     {
                         return Ok(vehicle);
@@ -92,22 +92,21 @@ namespace DMS_Internship.Backend.Controllers
                     connection.Open();
 
                     string sql = "INSERT INTO Vehicle " +
-                        "(vehicleID, make, Model, price) " +
-                        "OUTPUT INSERTED.* "+
-                        "VALUES (@vehicleID, @make, @Model, @price)";
+                        "(make, Model, price) " +
+                        "VALUES (@make, @Model, @price);" +
+                        "select last_insert_rowid();";
 
                     var vehicle = new Vehicle()
                     {
-                        vehicleID = VehicleDBContext.vehicleID,
                         make = VehicleDBContext.make,
                         Model = VehicleDBContext.Model,
                         price = VehicleDBContext.price,
                     };
 
-                var newVehicle = connection.QuerySingleOrDefault<Vehicle>(sql, vehicle);
-                if(newVehicle != null)
+                var newVehicleID = connection.ExecuteScalar<int>(sql, vehicle);
+                if (newVehicleID > 0)
                 {
-                    return Ok(newVehicle);
+                    return GetVehicles(newVehicleID);
                 }
                 }
             }
@@ -121,19 +120,19 @@ namespace DMS_Internship.Backend.Controllers
 
         
 
-        [HttpPut("{vehicleID}")]
-        public IActionResult UpdateVehicle(int vehicleID, vehicleDbContext VehicleDBContext)
+        [HttpPut("{id}")]
+        public IActionResult UpdateVehicle(int id, vehicleDbContext VehicleDBContext)
         {
             try
             {
                 using(var connection = new SqliteConnection(connectionString))
                 {
                     connection.Open();
-                    string sql = "UPDATE Vehicle SET make=@make, Model=@Model, price=@price WHERE vehicleID=@vehicleD";
+                    string sql = "UPDATE Vehicle SET make=@make, Model=@Model, price=@price WHERE vehicleID=@vehicleID";
 
                     var vehicle = new Vehicle()
                     {
-                        vehicleID = VehicleDBContext.vehicleID,
+                        vehicleID = id,
                         make = VehicleDBContext.make,
                         Model = VehicleDBContext.Model,
                         price = VehicleDBContext.price,
@@ -151,7 +150,7 @@ namespace DMS_Internship.Backend.Controllers
                 Console.WriteLine("We have an exception: \n" + ex.Message);
                 return BadRequest();
             }
-            return GetVehicles(vehicleID);
+            return GetVehicles(id);
         }
         
 
