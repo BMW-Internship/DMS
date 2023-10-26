@@ -18,17 +18,13 @@ namespace DMS_Internship.Backend.Controllers
 
         private readonly string connectionString;
 
-        public BMWManagementController(IConfiguration configuration)
-        {
-            connectionString = configuration.GetConnectionString("DefaultConnection")!;
-        }
+       
 
-        public BMWManagementController(ILogger<BMWManagementController> logger)
+        public BMWManagementController(ILogger<BMWManagementController> logger, IConfiguration configuration)
         {
             _logger = logger;
-            var connection = new SqliteConnection("Data Source=DMS.db");
-            connection.Open();
-            //connection.Execute();
+            connectionString = configuration.GetConnectionString("DefaultConnection")!;
+            
 
         }
 
@@ -160,7 +156,7 @@ namespace DMS_Internship.Backend.Controllers
         
 
         [HttpDelete("{vehicleID}")]
-        public IActionResult DeleteProduct(int vehicleID)
+        public IActionResult DeleteVehicle(int vehicleID)
         {
             try
             {
