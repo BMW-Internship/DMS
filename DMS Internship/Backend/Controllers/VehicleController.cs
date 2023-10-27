@@ -20,7 +20,7 @@ namespace DMS_Internship.Backend.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll(int newVehicleID)
+        public IActionResult GetAll()
         {
             var data = _vehicleService.GetAll();
             return Ok(data);

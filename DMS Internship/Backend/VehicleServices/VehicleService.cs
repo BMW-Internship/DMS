@@ -2,6 +2,7 @@
 using DMS_Internship.Backend.Controllers;
 using DMS_Internship.Backend.Models;
 using Microsoft.Data.Sqlite;
+using System.Collections.Generic;
 using static Dapper.SqlMapper;
 
 namespace DMS_Internship.Backend.VehicleServices
@@ -85,26 +86,39 @@ namespace DMS_Internship.Backend.VehicleServices
         }
 
 
-        public VehicleModel GetAll(int id) 
+        public List<VehicleModel> GetAll() 
         //public IEnumerable<VehicleModel>? GetAll(int id)
         {
             List<VehicleModel> vehicles = new List<VehicleModel>();
-                try
+            try
+            {
+                using (var connection = new SqliteConnection(_connectionString))
                 {
-                    using (var connection = new SqliteConnection(_connectionString))
-                    {
-                        connection.Open();
+                    connection.Open();
 
-                        string sql = "SELECT * FROM Vehicle";
-                        vehicles = connection.Query<VehicleModel>(sql).ToList();
+                    string sql = "SELECT * FROM Vehicle";
+                 var entities= connection.Query<VehicleEntity>(sql).ToList();
+                    foreach (var entity in entities)
+                    {
+                        var model = new VehicleModel
+                        {
+                            Id = entity.VehicleId,
+                            Price = entity.Price,
+                            PriceInclusive = entity.Price * 1.15f,
+                            Series = entity.Make + entity.Model
+                        };
+                        vehicles.Add(model);
                     }
+                    
+
                     return vehicles;
                 }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "We have an exception:");
-                    return null;
-                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "We have an exception:");
+                return new List<VehicleModel>();
+            }
         }
 
         public VehicleModel? GetById(int id)
@@ -137,7 +151,7 @@ namespace DMS_Internship.Backend.VehicleServices
             }
         }
 
-        public VehicleModel? Update(int id, VehicleEntity ntity)
+        public VehicleModel? Update(int id, VehicleEntity entity)
         {
             try
             {
@@ -146,7 +160,7 @@ namespace DMS_Internship.Backend.VehicleServices
                     connection.Open();
 
                     string sql = "UPDATE Vehicle SET Model = @Model, Make = @Make, Price = @Price WHERE VehicleId = @VehicleId";
-                    entity.VehicleId = id; 
+                    entity.VehicleId = id;
 
                     var rowsAffected = connection.Execute(sql, entity);
 
@@ -157,6 +171,7 @@ namespace DMS_Internship.Backend.VehicleServices
 
                     return GetById(id);
                 }
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "We have an exception: " + ex.Message);

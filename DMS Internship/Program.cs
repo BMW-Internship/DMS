@@ -1,9 +1,11 @@
 using Dapper;
+using DMS_Internship.Backend.Setup;
 using DMS_Internship.Backend.VehicleServices;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<VehicleService>();
+builder.Services.AddSingleton<DatabaseInit>();
 
 // Add services to the container.
 
@@ -11,6 +13,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+var databaseInit = app.Services.GetRequiredService<DatabaseInit>();
+databaseInit.IntDatabase();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
