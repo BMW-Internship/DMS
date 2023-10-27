@@ -69,8 +69,7 @@ namespace DMS_Internship.Backend.Controllers
             }
             return Ok(data);
         }
-
     }
-     }
+}
 
     

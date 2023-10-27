@@ -40,10 +40,6 @@ namespace DMS_Internship.Backend.VehicleServices
 
                     var newVehicleId = connection.ExecuteScalar<int>(sql, vehicle);
 
-                    if (newVehicleId <= 0)
-                    {
-
-                    }
                     return GetById(newVehicleId);
                 }
             }
@@ -92,7 +88,7 @@ namespace DMS_Internship.Backend.VehicleServices
                     connection.Open();
 
                     string sql = "SELECT * FROM Vehicle";
-                 var entities= connection.Query<VehicleEntity>(sql).ToList();
+                    var entities= connection.Query<VehicleEntity>(sql).ToList();
                     foreach (var entity in entities)
                     {
                         var model = new VehicleModel
