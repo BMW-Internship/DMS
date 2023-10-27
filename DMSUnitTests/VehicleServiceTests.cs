@@ -1,34 +1,46 @@
+using DMS_Internship.Backend.Setup;
 using DMS_Internship.Backend.VehicleServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
+using NUnit.Framework;
+using System.Diagnostics;
 
 namespace DMSUnitTests
 {
-    public class Tests
+    public class VehicleServiceTests
     {
-        [SetUp]
+        private IConfiguration _configuration;
+        private VehicleService _sut;
+
+        [OneTimeSetUp]
         public void Setup()
         {
+            var configValues = new Dictionary<string, string?>()
+            {
+                { "ConnectionStrings:DefaultConnection", "Data Source=DMS_Test.db" }
+            };
+
+            _configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(configValues)
+                .Build();
+
+            _sut = new VehicleService(NullLogger<VehicleService>.Instance, _configuration);
+
+            var databaseInit = new DatabaseInit(_configuration);
+            databaseInit.DropDatabaseTables();
+            databaseInit.IntDatabase();
         }
 
         [Test]
-        public void Test1()
+        [Order(0)]
+        public void VehicleService_WhenGetAll_ShouldReturnSeededRecords()
         {
-            //arrange
-            var configMock = new Mock<IConfiguration>();
+            // act
+            var vehicles = _sut.GetAll();
 
-            var mockConfSection = new Mock<IConfigurationSection>();
-            mockConfSection.SetupGet(m => m[It.Is<string>(s => s == "DefaultConnection")]).Returns("mock value");
-            configMock.Setup(a => a.GetSection(It.Is<string>(s => s == "ConnectionStrings"))).Returns(mockConfSection.Object);
-
-            var sut = new VehicleService(NullLogger<VehicleService>.Instance, configMock.Object);
-
-            //act
-            var vehicles = sut.GetAll();
-
-            //assert
-            Assert.True(vehicles.Count() > 0);
+            // assert
+            Assert.Equals(12, vehicles.Count());
         }
     }
 }

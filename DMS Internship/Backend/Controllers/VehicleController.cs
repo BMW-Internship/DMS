@@ -37,7 +37,7 @@ namespace DMS_Internship.Backend.Controllers
             return Ok(data);
         }
 
-        [HttpPost]//AddById
+        [HttpPost]
         public IActionResult Create(VehicleEntity entity)
         {
             var data = _vehicleService.Create(entity);
@@ -48,7 +48,7 @@ namespace DMS_Internship.Backend.Controllers
             return Ok(data);
         }
 
-        [HttpPut("{id}")]//updateById
+        [HttpPut("{id}")]
         public IActionResult Update(int id, VehicleEntity entity)
         {
             var data = _vehicleService.Update(id, entity);
@@ -59,11 +59,11 @@ namespace DMS_Internship.Backend.Controllers
             return Ok(data);
         }
 
-        [HttpDelete("{id}")]//DeleteById
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var data = _vehicleService.Delete(id);
-            if (data == null)
+            if (data == false)
             {
                 return BadRequest();
             }

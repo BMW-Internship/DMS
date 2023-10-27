@@ -15,6 +15,17 @@ namespace DMS_Internship.Backend.Setup
             _connectionString = configuration.GetConnectionString("DefaultConnection")!;
         }
 
+        public void DropDatabaseTables()
+        {
+            using (var connection = new SqliteConnection(_connectionString))
+            {
+                connection.Open();
+
+                string sql = @"DROP TABLE IF EXISTS Vehicle";
+                connection.Execute(sql);
+            }
+        }
+
         public void IntDatabase()
         {
             using (var connection = new SqliteConnection(_connectionString))

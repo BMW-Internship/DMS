@@ -30,15 +30,7 @@ namespace DMS_Internship.Backend.VehicleServices
                         "(Make, Model, Price) " +
                         "VALUES (@Make, @Model, @Price);" +
                         "select last_insert_rowid();";
-
-                    var vehicle = new VehicleEntity()
-                    {
-                        Make = entity.Make,
-                        Model = entity.Model,
-                        Price = entity.Price
-                    };
-
-                    var newVehicleId = connection.ExecuteScalar<int>(sql, vehicle);
+                    var newVehicleId = connection.ExecuteScalar<int>(sql, entity);
 
                     return GetById(newVehicleId);
                 }
@@ -50,7 +42,7 @@ namespace DMS_Internship.Backend.VehicleServices
             }
         }
 
-        public Boolean? Delete(int id)
+        public bool Delete(int id)
         {
             try
             {
@@ -74,7 +66,7 @@ namespace DMS_Internship.Backend.VehicleServices
             catch (Exception ex)
             {
                 _logger.LogError(ex, "We have an exception: " + ex.Message);
-                return null;
+                return false;
             }
         }
 
