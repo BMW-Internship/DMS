@@ -54,7 +54,7 @@ namespace DMS_Internship.Backend.VehicleServices
             }
         }
 
-        public VehicleModel? Delete(int id)
+        public Boolean? Delete(int id)
         {
             try
             {
@@ -66,16 +66,13 @@ namespace DMS_Internship.Backend.VehicleServices
                     var rowsAffected = connection.Execute(sql, new { id });
 
                     if (rowsAffected == 0)
-                    {
-                        return null;
+                    {   
+                        return false;
                     }
-
-                    var vehicle = new VehicleModel
+                    else
                     {
-                        Id = id
-                    };
-
-                    return vehicle;
+                        return true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -85,9 +82,7 @@ namespace DMS_Internship.Backend.VehicleServices
             }
         }
 
-
         public List<VehicleModel> GetAll() 
-        //public IEnumerable<VehicleModel>? GetAll(int id)
         {
             List<VehicleModel> vehicles = new List<VehicleModel>();
             try
@@ -110,7 +105,6 @@ namespace DMS_Internship.Backend.VehicleServices
                         vehicles.Add(model);
                     }
                     
-
                     return vehicles;
                 }
             }
@@ -177,7 +171,6 @@ namespace DMS_Internship.Backend.VehicleServices
                 _logger.LogError(ex, "We have an exception: " + ex.Message);
                 return null;
             }
-
         }
     }
 }
