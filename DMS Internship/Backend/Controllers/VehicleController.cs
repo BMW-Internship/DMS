@@ -40,25 +40,22 @@ namespace DMS_Internship.Backend.Controllers
         [HttpPost]//AddById
         public IActionResult Create(VehicleEntity entity)
         {
-
             var data = _vehicleService.Create(entity);
             if(data == null)
             {
                 return BadRequest();
             }
-
             return Ok(data);
         }
 
         [HttpPut("{id}")]//updateById
-        public IActionResult Update(int id,VehicleEntity entity)
+        public IActionResult Update(int id, VehicleEntity entity)
         {
-            var data = _vehicleService.Update(id,entity);
+            var data = _vehicleService.Update(id, entity);
             if (data == null)
             {
                 return BadRequest();
             }
-
             return Ok(data);
         }
 
@@ -70,7 +67,6 @@ namespace DMS_Internship.Backend.Controllers
             {
                 return BadRequest();
             }
-
             return Ok(data);
         }
 

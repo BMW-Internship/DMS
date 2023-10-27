@@ -62,16 +62,19 @@ namespace DMS_Internship.Backend.VehicleServices
                     connection.Open();
 
                     string sql = "DELETE FROM Vehicle WHERE VehicleId=@id";
-                    int count = connection.Execute(sql, new { id });
+                    var rowsAffected = connection.Execute(sql, new { id });
 
-                    if (count > 0)
-                    {
-                        return new VehicleModel { Id = id };
-                    }
-                    else
+                    if (rowsAffected == 0)
                     {
                         return null;
                     }
+
+                    var vehicle = new VehicleModel
+                    {
+                        Id = id
+                    };
+
+                    return vehicle;
                 }
             }
             catch (Exception ex)
@@ -82,36 +85,26 @@ namespace DMS_Internship.Backend.VehicleServices
         }
 
 
-        public IEnumerable<VehicleModel> GetAll(int id)
+        public VehicleModel GetAll(int id) 
+        //public IEnumerable<VehicleModel>? GetAll(int id)
         {
             List<VehicleModel> vehicles = new List<VehicleModel>();
-            try
-            {
-                using (var connection = new SqliteConnection(_connectionString))
+                try
                 {
-                    connection.Open();
-
-                    string sql = "SELECT * FROM Vehicle";
-                   // var data = connection.Execute(sql);
-                   // vehicles = data.ToList();
-                    vehicles = connection.Query<VehicleModel>(sql).ToList();
-                    var entity = connection.QuerySingle<VehicleEntity>(sql, new { vehicleId = id });
-
-                    return new VehicleEntity
+                    using (var connection = new SqliteConnection(_connectionString))
                     {
-                        id = entity.VehicleId,
-                        Price = entity.Price,
-                        Make = entity.Make,
-                        Model = entity.Model
-                    };
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "We have an exception:");
-                return null;
-            }
+                        connection.Open();
 
+                        string sql = "SELECT * FROM Vehicle";
+                        vehicles = connection.Query<VehicleModel>(sql).ToList();
+                    }
+                    return vehicles;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "We have an exception:");
+                    return null;
+                }
         }
 
         public VehicleModel? GetById(int id)
@@ -152,11 +145,18 @@ namespace DMS_Internship.Backend.VehicleServices
                 {
                     connection.Open();
 
-                    string sql = "DELETE FROM Vehicle WHERE vehicleID=@vehicleID";
-                    int count = connection.Execute(sql, new { vehicleID = id });
-                    return vehicleModel;
+                    string sql = "UPDATE Vehicle SET Model = @Model, Make = @Make, Price = @Price WHERE VehicleId = @VehicleId";
+                    entity.VehicleId = id; 
+
+                    var rowsAffected = connection.Execute(sql, entity);
+
+                    if (rowsAffected == 0)
+                    {
+                        return null;
+                    }
+
+                    return GetById(id);
                 }
-            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "We have an exception: " + ex.Message);
