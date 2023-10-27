@@ -82,7 +82,8 @@ namespace DMS_Internship.Backend.VehicleServices
         }
 
 
-        public IEnumerable<VehicleModel> GetAll(int id)
+        public VehicleModel GetAll(int id) 
+        //public IEnumerable<VehicleModel>? GetAll(int id)
         {
             List<VehicleModel> vehicles = new List<VehicleModel>();
             try
@@ -97,13 +98,16 @@ namespace DMS_Internship.Backend.VehicleServices
                     vehicles = connection.Query<VehicleModel>(sql).ToList();
                     var entity = connection.QuerySingle<VehicleEntity>(sql, new { vehicleId = id });
 
-                    return new VehicleEntity
+                    var vehicle = new VehicleEntity()
                     {
-                        id = entity.VehicleId,
-                        Price = entity.Price,
+                        VehicleId = entity. VehicleId,
                         Make = entity.Make,
-                        Model = entity.Model
+                        Model = entity.Model,
+                        Price = entity.Price
                     };
+
+                    var newVehicleId = connection.ExecuteScalar<int>(sql, vehicle);
+                    return vehicles[newVehicleId];
                 }
             }
             catch (Exception ex)
@@ -144,7 +148,7 @@ namespace DMS_Internship.Backend.VehicleServices
             }
         }
 
-        public VehicleModel? Update(int id, VehicleModel vehicleModel)
+        public VehicleModel? Update(int id, VehicleEntity vehicleEntity)
         {
             try
             {
@@ -154,7 +158,7 @@ namespace DMS_Internship.Backend.VehicleServices
 
                     string sql = "DELETE FROM Vehicle WHERE vehicleID=@vehicleID";
                     int count = connection.Execute(sql, new { vehicleID = id });
-                    return vehicleModel;
+
                 }
             }
             catch (Exception ex)

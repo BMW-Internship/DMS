@@ -22,7 +22,7 @@ namespace DMS_Internship.Backend.Controllers
         [HttpGet]
         public IActionResult GetAll(int newVehicleID)
         {
-            var data = _vehicleService.GetAll();
+            var data = _vehicleService.GetAll(newVehicleID);
             return Ok(data);
         }
 
