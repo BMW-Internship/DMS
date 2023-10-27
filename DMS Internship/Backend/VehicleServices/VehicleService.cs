@@ -62,9 +62,17 @@ namespace DMS_Internship.Backend.VehicleServices
                     connection.Open();
 
                     string sql = "DELETE FROM Vehicle WHERE VehicleId=@id";
-                    int count = connection.Execute(sql, new { vehicleId = id });
-                }
+                    int count = connection.Execute(sql, new { id });
 
+                    if (count > 0)
+                    {
+                        return new VehicleModel { Id = id };
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -73,7 +81,8 @@ namespace DMS_Internship.Backend.VehicleServices
             }
         }
 
-        public IEnumerable<VehicleModel> GetAll()
+
+        public IEnumerable<VehicleModel> GetAll(int id)
         {
             List<VehicleModel> vehicles = new List<VehicleModel>();
             try
@@ -90,11 +99,11 @@ namespace DMS_Internship.Backend.VehicleServices
 
                     return new VehicleEntity
                     {
-                        Id = entity.Id,
-                        Price = vehicles.Price,
-                        Make = vehicles.Make,
-                        Model = vehicles.ToString(),
-                    }
+                        id = entity.VehicleId,
+                        Price = entity.Price,
+                        Make = entity.Make,
+                        Model = entity.Model
+                    };
                 }
             }
             catch (Exception ex)
@@ -135,7 +144,7 @@ namespace DMS_Internship.Backend.VehicleServices
             }
         }
 
-        public VehicleModel Update(int id)
+        public VehicleModel? Update(int id, VehicleModel vehicleModel)
         {
             try
             {
@@ -145,8 +154,8 @@ namespace DMS_Internship.Backend.VehicleServices
 
                     string sql = "DELETE FROM Vehicle WHERE vehicleID=@vehicleID";
                     int count = connection.Execute(sql, new { vehicleID = id });
-                 }
-
+                    return vehicleModel;
+                }
             }
             catch (Exception ex)
             {
@@ -158,10 +167,3 @@ namespace DMS_Internship.Backend.VehicleServices
     }
 }
         
-    //mapper
-//prices vat
-//private ienum<summary> bmwmanange  entity(){
-//code code
-//if null 
-//return null
-//}

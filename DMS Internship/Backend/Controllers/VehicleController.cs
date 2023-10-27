@@ -53,7 +53,7 @@ namespace DMS_Internship.Backend.Controllers
         [HttpPut("{id}")]//updateById
         public IActionResult Update(int id)
         {
-            var data = _vehicleService.Update(id);
+            var data = _vehicleService.Update(id, VehicleModel);
             if (data == null)
             {
                 return BadRequest();
