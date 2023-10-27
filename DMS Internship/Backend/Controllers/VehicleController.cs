@@ -51,9 +51,9 @@ namespace DMS_Internship.Backend.Controllers
         }
 
         [HttpPut("{id}")]//updateById
-        public IActionResult Update(int id)
+        public IActionResult Update(int id,VehicleEntity entity)
         {
-            var data = _vehicleService.Update(id, VehicleModel);
+            var data = _vehicleService.Update(id,entity);
             if (data == null)
             {
                 return BadRequest();

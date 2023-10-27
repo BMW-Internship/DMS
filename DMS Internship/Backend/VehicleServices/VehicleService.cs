@@ -144,7 +144,7 @@ namespace DMS_Internship.Backend.VehicleServices
             }
         }
 
-        public VehicleModel? Update(int id, VehicleModel vehicleModel)
+        public VehicleModel? Update(int id, VehicleEntity ntity)
         {
             try
             {
