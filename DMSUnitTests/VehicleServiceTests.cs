@@ -12,8 +12,9 @@ namespace DMSUnitTests
     {
         private IConfiguration _configuration;
         private VehicleService _sut;
+        int id;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             var configValues = new Dictionary<string, string?>()
@@ -40,7 +41,21 @@ namespace DMSUnitTests
             var vehicles = _sut.GetAll();
 
             // assert
-            Assert.Equals(12, vehicles.Count());
+            Assert.AreEqual(12, vehicles.Count());
+        }
+
+        [Test]
+        [Order(1)]
+        public void VehicleService_WhenDelete_ShouldRemoveSeededRecord()
+        {
+            //Act
+            id = 5;
+            var delete = _sut.Delete(id);
+            var vehicles = _sut.GetAll();
+
+            //Assert
+            Assert.AreEqual(11, vehicles.Count());
+            //
         }
     }
 }
