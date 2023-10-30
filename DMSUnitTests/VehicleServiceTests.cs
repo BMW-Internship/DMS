@@ -53,46 +53,45 @@ namespace DMSUnitTests
         {
             //Act
             Id = 6;
-            var entity = new VehicleEntity();
+            //var entity = new VehicleEntity();
+
+            var entity = new VehicleEntity
+            {
+                // Set the properties of the entity to be updated
+                // based on the requirements
+                // Example:
+
+                VehicleId = Id,
+                Make = "Toyota",
+                Price = 10,
+                Model = "X5"
+               
+            }; 
+
+
             var update = _sut.Update(Id, entity);
             var vehicles = _sut.GetAll();
 
-            //Assert
+            string expected = "true";
+            string actual = update.ToString();
+            bool test;
 
-            //    var entity = new VehicleEntity[]
-            //    {
-            //        new VehicleEntity()
-            //        {
-            //            VehicleId = 1,
-            //            Model = "GT3",
-            //            Make = "Toyota",
-            //            Price = 10
-            //        }
-            //    };
+            if (expected == actual)
+                test = true;
 
-            //    var mockContext = new Mock<sqlite3_context>();
-            //    //mockContext.Setup(e => e.Id).ReturnsDbSet(entity);
-            //    //mockContext.Setup(m => m.Employees.Find(It.IsAny<object[]>()))
-            //            //.Returns<object[]>(
-            //                    ids => employees.FirstOrDefault(d => d.EmployeeId == (int)ids[0]));
+            else
+                test = false;
+            Assert.IsTrue(test);
 
-            //    var sut = new EmployeeRepository(mockContext.Object);
+            //Assert.IsTrue(update); // Check if the update operation was successful
 
-            //    var employeeToUpdate = new 
-            //    {
-            //        EmployeeId = 1,
-            //        FirstName = "John",
-            //        LastName = "Smith",
-            //        Email = "John.Smith@Illinois.gov",
-            //        IsActive = true
-            //    };
-
-            //    sut.Save(employeeToUpdate);
-
-            //    Assert.That(employees.First().FirstName, Is.EqualTo(employeeToUpdate.FirstName));
-            //    Assert.That(employees.First().LastName, Is.EqualTo(employeeToUpdate.LastName));
-            //    Assert.That(employees.First().Email, Is.EqualTo(employeeToUpdate.Email));
-            //}
+            // Verify that the seeded record has been updated with the new values
+            Assert.AreEqual(entity.VehicleId, update.Id);
+            Assert.AreEqual(entity.Model + entity.Make, update.Series);
+            Assert.AreEqual(entity.Price, update.Price);
+            Assert.AreEqual(entity.Price, update.PriceInclusive);
+            // Add additional assertions for other properties as required
+           
         }
 
 
