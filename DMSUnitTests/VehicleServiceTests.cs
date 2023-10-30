@@ -45,14 +45,37 @@ namespace DMSUnitTests
 
             // assert
             Assert.AreEqual(12, vehicles.Count());
+            Assert.AreEqual(2558750, vehicles.First().PriceInclusive);
         }
 
         [Test]
         [Order(1)]
+        public void VehicleService_GetById_ShouldDisplaySeededRecord()
+        {
+            //Act
+            Id = 4;
+            var vehicle = _sut.GetById(Id);
+            //Assert
+            Assert.IsNotNull(vehicle);
+            Assert.AreEqual(1943500, vehicle.PriceInclusive);
+        }
+
+        [Test]
+        [Order(2)]
+        public void VehicleService_GetById_WithNonexistentId_ShouldReturnNull()
+        {
+            //Act
+            var vehicle = _sut.GetById(Id);
+            //Assert
+            Assert.IsNull(vehicle);
+        }
+
+        [Test]
+        [Order(3)]
         public void VehicleService_WhenUpdate_ShouldUpdateSeededRecord()
         {
             //Act
-            Id = 6;
+            Id = 5;
             //var entity = new VehicleEntity();
 
             var entity = new VehicleEntity
@@ -89,13 +112,12 @@ namespace DMSUnitTests
 
         }
 
-
         [Test]
-        [Order(2)]
+        [Order(4)]
         public void VehicleService_WhenDelete_ShouldRemoveSeededRecord()
         {
             //Act
-            Id = 5;
+            Id = 6;
             var delete = _sut.Delete(Id);
             var vehicles = _sut.GetAll();
 

@@ -112,7 +112,7 @@ namespace DMS_Internship.Backend.VehicleServices
                     connection.Open();
 
                     string sql = "SELECT * FROM Vehicle WHERE vehicleId=@vehicleId";
-                    var entity = connection.QuerySingle<VehicleEntity>(sql, new { vehicleId = id });
+                    var entity = connection.QuerySingleOrDefault<VehicleEntity>(sql, new { vehicleId = id });
 
                     if (entity == null)
                         return null;
