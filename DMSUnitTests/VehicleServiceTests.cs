@@ -68,30 +68,25 @@ namespace DMSUnitTests
                
             }; 
 
-
             var update = _sut.Update(Id, entity);
-            var vehicles = _sut.GetAll();
+            var vehicle = _sut.GetById(Id);
 
-            string expected = "true";
-            string actual = update.ToString();
-            bool test;
-
-            if (expected == actual)
-                test = true;
-
-            else
-                test = false;
-            Assert.IsTrue(test);
-
+            var priceVatInclusive = entity.Price * 1.15;
+            var vehicleSeries = entity.Make + entity.Model;
             //Assert.IsTrue(update); // Check if the update operation was successful
 
             // Verify that the seeded record has been updated with the new values
-            Assert.AreEqual(entity.VehicleId, update.Id);
-            Assert.AreEqual(entity.Model + entity.Make, update.Series);
-            Assert.AreEqual(entity.Price, update.Price);
-            Assert.AreEqual(entity.Price, update.PriceInclusive);
+            Assert.AreEqual(entity.VehicleId, vehicle.Id);
+            Assert.AreEqual(vehicleSeries, vehicle.Series);
+            Assert.AreEqual(entity.Price, vehicle.Price);
+            Assert.AreEqual(priceVatInclusive, vehicle.PriceInclusive);
             // Add additional assertions for other properties as required
-           
+
+            Assert.AreEqual(vehicle.Id, update.Id);
+            Assert.AreEqual(vehicle.Series, update.Series);
+            Assert.AreEqual(vehicle.Price, update.Price);
+            Assert.AreEqual(vehicle.PriceInclusive, update.PriceInclusive);
+
         }
 
 
