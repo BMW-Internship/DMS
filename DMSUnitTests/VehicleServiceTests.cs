@@ -1,4 +1,5 @@
 using Castle.Components.DictionaryAdapter.Xml;
+using DMS_Internship.Backend.Controllers;
 using DMS_Internship.Backend.Models;
 using DMS_Internship.Backend.Setup;
 using DMS_Internship.Backend.VehicleServices;
@@ -88,8 +89,8 @@ namespace DMSUnitTests
                 Make = "Toyota",
                 Price = 10,
                 Model = "X5"
-               
-            }; 
+
+            };
 
             var update = _sut.Update(Id, entity);
             var vehicle = _sut.GetById(Id);
@@ -124,6 +125,24 @@ namespace DMSUnitTests
             //Assert
             Assert.AreEqual(11, vehicles.Count());
             //
+        }
+
+        [Test]
+        [Order(5)]
+        public void VehicleService_WhenCreate_ShouldCreateSeededRecord()
+        {
+            //Arrange
+            VehicleEntity model = new VehicleEntity();
+
+            var entity = new VehicleEntity
+            {
+                VehicleId = 13,
+                Make = "BMW",
+                Model = "X5",
+                Price = 15000000
+            };
+            //Act
+                controller.Create(entity);
         }
     }
 }
