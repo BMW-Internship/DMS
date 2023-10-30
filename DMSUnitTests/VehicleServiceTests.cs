@@ -141,8 +141,19 @@ namespace DMSUnitTests
                 Model = "X5",
                 Price = 15000000
             };
+
+            var priceVatInclusive = entity.Price * 1.15;
+            var vehicleSeries = entity.Make + entity.Model;
+
             //Act
-                controller.Create(entity);
+            var vehicle = _sut.Create(entity);
+
+            // Assert
+            // Verify that the seeded record has been updated with the new values
+            Assert.AreEqual(entity.VehicleId, vehicle.Id);
+            Assert.AreEqual(vehicleSeries, vehicle.Series);
+            Assert.AreEqual(entity.Price, vehicle.Price);
+            Assert.AreEqual(priceVatInclusive, vehicle.PriceInclusive);
         }
     }
 }
