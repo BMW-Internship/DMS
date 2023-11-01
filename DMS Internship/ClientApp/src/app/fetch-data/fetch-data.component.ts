@@ -17,13 +17,13 @@ export class FetchDataComponent {
 
 interface DMS {
 
-  vehicleID: bigint;
+  vehicleId: bigint;
 
-  make: string;
+  Make: string;
 
   Model: string;
 
-  price: number;
+  Price: number;
 }
 
 

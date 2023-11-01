@@ -7,17 +7,18 @@
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts.length">
   <thead>
     <tr>
-      <th>Price</th>
-     
+      <th>VehicleId</th>
+      <th>Make</th>
       <th>Model</th>
+      <th>Price</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let DMS of forecasts">
-      <td>{{ DMS.vehicleID }}</td>
-      <td>{{ DMS.make }}</td>
+      <td>{{ DMS.vehicleId }}</td>
+      <td>{{ DMS.Make }}</td>
       <td>{{ DMS.Model }}</td>
-      <td>{{ DMS.price }}</td>
+      <td>{{ DMS.Price }}</td>
 
     </tr>
   </tbody>
