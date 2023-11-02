@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-counter-component',
@@ -10,4 +11,9 @@ export class CounterComponent {
   public incrementCounter() {
     this.currentCount++;
   }
+}
+const inputValues = { Name: '', Surname: '', Age: '', DOB: '' };
+
+   onSubmit(form: ngform) {
+  console.log(form.value);
 }
