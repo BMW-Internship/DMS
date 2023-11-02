@@ -3,7 +3,6 @@ import { VehicleInfo } from './VehicleInfo';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
-import { environment } from "../environments/environment";
 
 @Injectable({
   providedIn: "platform"
@@ -11,6 +10,9 @@ import { environment } from "../environments/environment";
 
 export class VehicleService {
   constructor(private http: HttpClient) { }
+
+
+  
 
 
   getAllInformations(): Observable<VehicleInfo[]> {
@@ -26,8 +28,8 @@ export class VehicleService {
             return {
              
             } as VehicleInfo;
-         })
-       })
+        })
+      })
      )
   }
 };

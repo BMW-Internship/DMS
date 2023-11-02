@@ -25,6 +25,3 @@ interface DMS {
 
   Price: number;
 }
-
-
-
