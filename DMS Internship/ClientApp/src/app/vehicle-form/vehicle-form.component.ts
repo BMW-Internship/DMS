@@ -1,20 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-vehicle-form-component',
-  templateUrl: './vehicle-form.component.html',
-  styleUrls: ['./']
+  selector: 'app-vehicle-form',
+  templateUrl: './vehicle-form.component.html'
 })
-export class CounterComponent {
-  public currentCount = 0;
+export class VehicleFormComponent implements OnInit{
 
-  public incrementCounter() {
-    this.currentCount++;
+
+  ngOnInit(): void {
+
+   }
+
+  inputValues = {Make: ' ', Model: ' ', Price: 0};
+
+  onSubmit(form: NgForm) {
+    console.log(form.value);
   }
-}
-//const inputValues = { Name: '', Surname: '', Age: '', DOB: '' };
-
-onSubmit(form: NgForm) {
-  console.log(form.value);
 }

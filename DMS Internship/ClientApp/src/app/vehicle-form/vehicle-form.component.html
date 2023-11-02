@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>Vehicle Form</title>
+
+  <h1>Vehicle Form</h1>
 
 
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
@@ -12,7 +9,7 @@
              class="form-control"
              id="exampleFormControlInput1"
              name="Make : "
-           [(ngModel)]="DMS.Name">
+           [(ngModel)]="inputValues.Make">
     </div>
 
     <div class="my-1">
@@ -21,7 +18,7 @@
              class="form-control"
              id="exampleFormControlInput2"
              name="Model : "
-           [(ngmodel)]="inputvalues.model">
+           [(ngModel)]="inputValues.Model">
     </div>
 
     <div class="my-1">
@@ -33,17 +30,7 @@
            [(ngModel)]="inputValues.Price">
     </div>
 
-
-
-
     <div class="my-1">
       <button class="btn btn-primary">Submit</button>
     </div>
   </form>
-
-
-</head>
-<body>
-
-</body>
-</html>

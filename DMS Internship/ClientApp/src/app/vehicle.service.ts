@@ -12,9 +12,6 @@ import { environment } from "../environments/environment";
 export class VehicleService {
   constructor(private http: HttpClient) { }
 
-  url: string = .apiBaseUrl + './VehicleInfo';
-  list: VehicleInfo[] = [];
-  formData: VehicleInfo = new VehicleInfo();
 
   getAllInformations(): Observable<VehicleInfo[]> {
     //debugger
@@ -28,7 +25,7 @@ export class VehicleService {
           return res.results.map((item: any) => {
             return {
              
-            } as Vehicle;
+            } as VehicleInfo;
          })
        })
      )
