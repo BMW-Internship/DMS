@@ -12,6 +12,17 @@ builder.Services.AddSingleton<DatabaseInit>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:44405")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 var databaseInit = app.Services.GetRequiredService<DatabaseInit>();
@@ -24,6 +35,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
   
 }
+
+app.UseCors(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
