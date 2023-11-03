@@ -1,19 +1,32 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
+import { VehicleInfo } from '../VehicleInfo';
+
 
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
+
 })
 export class FetchDataComponent {
   public forecasts: DMS[] = [];
-
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<DMS[]>(baseUrl + 'DMS').subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
+
+  }
+  vehicleInfo: VehicleInfo = {
+      vehicleId: 0,
+      Make: 'BMW',
+      Model: 'X3',
+      Price: 10000
   }
 }
+
+
 
 interface DMS {
 
