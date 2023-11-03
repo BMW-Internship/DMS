@@ -3,22 +3,12 @@
 <!--<input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search by Make or Model">-->
 <section>
   <form>
-    <input type="text" placeholder="Search By ID" [(ngModel)]=".id">
+    <input type="text" placeholder="Search By ID" [(ngModel)]="vehicleId.id">
     <button type="button" (click)="searchVehicle()">Search</button>
   </form>
 </section>
 
 <table class="table table-striped" *ngIf="vehicleModels.length > 0">
-<p *ngIf="!forecasts?.length"><em>Loading...</em></p>
-
-<section>
-  <form>
-    <input type="text" placeholder="Filter">
-    <button class="primary" type="button">Search</button>
-  </form>
-</section>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts.length">
   <thead>
     <tr>
       <th>Vehicle ID</th>
