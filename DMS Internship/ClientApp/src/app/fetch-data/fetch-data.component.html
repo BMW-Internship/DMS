@@ -1,7 +1,8 @@
-<h1 id="tableLabel">BMW Dealership Management System</h1>
+<h1>BMW Dealership Management System</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<!--<input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search by Make or Model">-->
 
+<table class="table table-striped" *ngIf="vehicleModels.length > 0">
 <p *ngIf="!forecasts?.length"><em>Loading...</em></p>
 
 <section>
@@ -14,20 +15,20 @@
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts.length">
   <thead>
     <tr>
-      <th>VehicleId</th>
-      <th>Make</th>
-      <th>Model</th>
+      <th>Vehicle ID</th>
+      <th>Series</th>
+      <th>PriceInclusive</th>
       <th>Price</th>
     </tr>
   </thead>
-
-
   <tbody>
-    <tr *ngFor="let DMS of forecasts">
-      <td>{{ DMS.vehicleId }}</td>
-      <td>{{ DMS.Make }}</td>
-      <td>{{ DMS.Model }}</td>
-      <td>{{ DMS.Price }}</td>
+    <tr *ngFor="let vehicle of vehicleModels">
+      <td>{{ vehicle.id }}</td>
+      <td>{{ vehicle.series }}</td>
+      <td>{{ vehicle.priceInclusive | currency }}</td>
+      <td>{{ vehicle.price | currency }}</td>
     </tr>
   </tbody>
 </table>
+
+<p *ngIf="vehicleModels.length === 0">No data available.</p>

@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { VehicleModel } from '../VehicleInfo';
+import { VehicleService } from '../vehicle.service';
 
 import { VehicleInfo } from '../VehicleInfo';
 
@@ -10,23 +11,36 @@ import { VehicleInfo } from '../VehicleInfo';
   templateUrl: './fetch-data.component.html'
 
 })
-export class FetchDataComponent {
-  public forecasts: DMS[] = [];
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<DMS[]>(baseUrl + 'DMS').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+export class FetchDataComponent implements OnInit {
+  public vehicleModels: VehicleModel[] = [];
+  searchTerm: string = '';
+  //searchResults: VehicleInfo[] = [];
+ // filteredVehicles: VehicleInfo[] = [];
 
+  constructor(private vehicleService: VehicleService) { }
+
+  //search() {
+  //  if (this.searchTerm) {
+  //    this.filteredVehicles = this.vehicleInfo.filter((vehicle) =>
+  //      vehicle.Make.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //      vehicle.Model.toLowerCase().includes(this.searchTerm.toLowerCase())
+  //    );
+  //  } else {
+  //    this.filteredVehicles = this.vehicleInfo;
+  //  }
+  //}
+
+  ngOnInit() {
+    this.vehicleService.getAllVehicles().subscribe(
+      (data) => {
+        this.vehicleModels = data;
+        //this.filteredVehicles = data;
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
   }
-  vehicleInfo: VehicleInfo = {
-      vehicleId: 0,
-      Make: 'BMW',
-      Model: 'X3',
-      Price: 10000
-  }
-}
-
-
 
 interface DMS {
 

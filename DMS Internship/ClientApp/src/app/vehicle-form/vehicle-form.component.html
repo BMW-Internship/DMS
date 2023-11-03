@@ -9,7 +9,7 @@
              class="form-control"
              id="exampleFormControlInput1"
              name="Make : "
-           [(ngModel)]="inputValues.Make">
+             [(ngModel)]="inputValues.Make">
     </div>
 
     <div class="my-1">
@@ -18,7 +18,7 @@
              class="form-control"
              id="exampleFormControlInput2"
              name="Model : "
-           [(ngModel)]="inputValues.Model">
+             [(ngModel)]="inputValues.Model">
     </div>
 
     <div class="my-1">
@@ -27,10 +27,9 @@
              class="form-control"
              id="exampleFormControlInput3"
              name="Price : "
-           [(ngModel)]="inputValues.Price">
+             [(ngModel)]="inputValues.Price">
     </div>
 
-    <div class="my-1">
-      <button class="btn btn-primary">Submit</button>
-    </div>
+    <button class="btn btn-primary" (click)="addVehicle()">Add</button>
+
   </form>
