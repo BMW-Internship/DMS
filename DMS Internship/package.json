@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "compass-mixins": "^0.12.12",
+    "node-sass": "^9.0.0"
+  }
+}

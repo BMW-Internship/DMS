@@ -2,9 +2,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { VehicleModel } from '../VehicleInfo';
 import { VehicleService } from '../vehicle.service';
 
+import { VehicleInfo } from '../VehicleInfo';
+
+
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
+
 })
 export class FetchDataComponent implements OnInit {
   public vehicleModels: VehicleModel[] = [];
