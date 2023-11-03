@@ -1,6 +1,12 @@
 <h1>BMW Dealership Management System</h1>
 
 <!--<input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search by Make or Model">-->
+<section>
+  <form>
+    <input type="text" placeholder="Search By ID" [(ngModel)]=".id">
+    <button type="button" (click)="searchVehicle()">Search</button>
+  </form>
+</section>
 
 <table class="table table-striped" *ngIf="vehicleModels.length > 0">
   <thead>
