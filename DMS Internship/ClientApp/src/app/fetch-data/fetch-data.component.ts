@@ -39,5 +39,7 @@ export class FetchDataComponent implements OnInit {
     });
   };
 
+  updateVehicle() {
 
+  }
 }

@@ -8,6 +8,13 @@
   </form>
 </section>
 
+<section>
+  <form>
+    <input type="text" placeholder="Update By ID" [(ngModel)]="vehicleId.id">
+    <button type="button" (click)="updateVehicle()">Update</button>
+  </form>
+</section>
+
 <table class="table table-striped" *ngIf="vehicleModels.length > 0">
   <thead>
     <tr>
