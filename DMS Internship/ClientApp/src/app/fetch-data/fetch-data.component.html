@@ -1,19 +1,87 @@
 <h1>BMW Dealership Management System</h1>
 
 <!--<input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search by Make or Model">-->
+<!--<section>
+  <h3>Search</h3>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <input type="text" placeholder="Search By ID" [(ngModel)]="vehicleWork.id" name="id"/>
+    <button type="button" (click)="searchVehicles()">Search</button>
+  </form>
+</section>-->
+
+<br />
+
 <section>
-  <form>
-    <input type="text" placeholder="Search By ID" [(ngModel)]="vehicleId.id">
-    <button type="button" (click)="searchVehicle()">Search</button>
+  <h3>Update</h3>
+  <form (ngSubmit)="updateVehicleForm(f)" #f="ngForm" novalidate>
+    <div class="main">
+      <div class="input-fields">
+        <input NgModel name="vehicleId" type="number" class="input-field" />
+      </div>
+      <div class="input-fields">
+        <input ngModel name="make" type="text" class="input-field" />
+      </div>
+      <div class="input-fields">
+        <input NgModel name="model" type="text" class="input-field" />
+      </div>
+      <div class="input-fields">
+        <input name="Price" NgModel placeholder="Price" id="Price" type="number" class="input-field" />
+      </div>
+      <button>Update Vehicle</button>
+    </div>
   </form>
 </section>
 
-<section>
+<br />
+
+<!--<section>
+  <h3>Delete</h3>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div>
+      <input type="number" placeholder="Delete By ID" [(ngModel)]="vehicleWork.id" name="id"/>
+      <button type="button" (click)="deleteVehicle()">Delete</button>
+    </div>
+  </form>
+</section>-->
+
+<!--<form #f="ngForm">
+  <div class="my-1">
+    <label for="exampleFormControlInput1" class="form-label" align="center">Make</label>
+    <input type="Make"
+           class="form-control"
+           id="exampleFormControlInput1"
+           name="Make : "
+           [(ngModel)]="inputValues.Make">
+  </div>
+
+  <div class="my-1">
+    <label for="exampleFormControlInput2" class="form-label" align="center">Model</label>
+    <input type="Model"
+           class="form-control"
+           id="exampleFormControlInput2"
+           name="Model : "
+           [(ngModel)]="inputValues.Model">
+  </div>
+
+  <div class="my-1">
+    <label for="exampleFormControlInput3" class="form-label" align="center">Price</label>
+    <input type="Price"
+           class="form-control"
+           id="exampleFormControlInput3"
+           name="Price : "
+           [(ngModel)]="inputValues.Price">
+  </div>
+
+  <button class="btn btn-primary" (click)="updateVehicle()">Update</button>
+
+</form>-->
+
+<!--<section>
   <form>
-    <input type="text" placeholder="Update By ID" [(ngModel)]="vehicleId.id">
+    <input type="text" placeholder="Update By ID" [(ngModel)]="id">
     <button type="button" (click)="updateVehicle()">Update</button>
   </form>
-</section>
+</section>-->
 
 <table class="table table-striped" *ngIf="vehicleModels.length > 0">
   <thead>
