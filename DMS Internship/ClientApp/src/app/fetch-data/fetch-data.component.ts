@@ -2,13 +2,16 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { VehicleModel, VehicleInfo } from '../VehicleInfo';
 import { VehicleService } from '../vehicle.service';
 import { HttpClient } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent implements OnInit {
+
+  vehicID = new FormControl('');
+
   public vehicleModels: VehicleModel[] = [];
 
   constructor(private vehicleService: VehicleService, private http: HttpClient) {
@@ -64,18 +67,19 @@ export class FetchDataComponent implements OnInit {
   //  priceInclusive: data.Price,
   //  price: data.Prices
 
-  //vehicleUpdate = {vehicleId: 0 ,Make: ' ', Model: ' ', Price: 0 };
+  /*vehicleUpdate = {Make: ' ', Model: ' ', Price: 0 };*/
 
   updateVehicle() {
     console.log("Blah blah blah");
+    console.log(this.vehicID);
     //const updatedVehicle: VehicleModel = {
-    //  id: this.vehicleUpdate.vehicleId,
+    //  id: 0,
     //  series: this.vehicleUpdate.Make + this.vehicleUpdate.Model,
     //  priceInclusive: this.vehicleUpdate.Price,
-    //  price: this.vehicleUpdate.Price
+    //  price: this.vehicleUpdate.Price,
     //};
 
-    //this.vehicleService.updateVehicle(updatedVehicle.id, updatedVehicle)
+    //this.vehicleService.updateVehicle(this.vehicID, updatedVehicle)
     //  .subscribe(response => {
     //    console.log(response)
     //});

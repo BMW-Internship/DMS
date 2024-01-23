@@ -11,7 +11,17 @@
 
 <br />
 
-<section>
+<label for="vehicleId">ID: </label>
+<input id="vehicleId" type="number" [formControl]="vehicID" />
+<label for="Make">Make: </label>
+<input id="Make" type="text"/>
+<label for="Model">Model: </label>
+<input id="Model" type="text"/>
+<label for="Price">Price: </label>
+<input id="Price" type="number"/>
+<button type="button" (click)="updateVehicle()">Update Vehicle</button>
+
+<!--<section>
   <h3>Update</h3>
   <form (ngSubmit)="updateVehicleForm(f)" #f="ngForm" novalidate>
     <div class="main">
@@ -25,12 +35,12 @@
         <input NgModel name="model" type="text" class="input-field" />
       </div>
       <div class="input-fields">
-        <input name="Price" NgModel placeholder="Price" id="Price" type="number" class="input-field" />
+        <input NgModel name="Price" placeholder="Price" id="Price" type="number" class="input-field" />
       </div>
       <button>Update Vehicle</button>
     </div>
   </form>
-</section>
+</section>-->
 
 <br />
 
@@ -43,7 +53,6 @@
     </div>
   </form>
 </section>-->
-
 <!--<form #f="ngForm">
   <div class="my-1">
     <label for="exampleFormControlInput1" class="form-label" align="center">Make</label>
@@ -75,7 +84,6 @@
   <button class="btn btn-primary" (click)="updateVehicle()">Update</button>
 
 </form>-->
-
 <!--<section>
   <form>
     <input type="text" placeholder="Update By ID" [(ngModel)]="id">

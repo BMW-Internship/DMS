@@ -21,7 +21,7 @@ export class VehicleService {
     return this.http.get<VehicleModel[]>(`${this.baseUrl}/vehicle/${id}`);
   }
 
-  updateVehicle(id: number, vehicleData: any): Observable<VehicleInfo> {
+  updateVehicle(id: any, vehicleData: any): Observable<VehicleInfo> {
     return this.http.put<VehicleInfo>(`${this.baseUrl}/vehicle/${id}`, vehicleData);
   }
 
