@@ -22,6 +22,10 @@ export class FetchDataComponent implements OnInit {
   constructor(private vehicleService: VehicleService, private http: HttpClient,private route: ActivatedRoute, private router: Router) {
     
 
+  public vehicleModels: VehicleModel[] = [];
+
+  constructor(private vehicleService: VehicleService, private http: HttpClient) {
+    // ...
   }
 
  
@@ -70,5 +74,10 @@ export class FetchDataComponent implements OnInit {
   editVehicle(vehicleId: number) {
     this.router.navigate(['/edit-vehicle-details', vehicleId])
 
-  }
-}
+  deleteVehicle() {
+    this.vehicleService.deleteVehicle(this.vehicleWork.id)
+      .subscribe(response => {
+        console.log(response)
+      });
+  };
+};
