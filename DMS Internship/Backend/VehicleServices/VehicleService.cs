@@ -124,6 +124,7 @@ namespace DMS_Internship.Backend.VehicleServices
                         PriceInclusive = entity.Price * 1.15f,
                         Series = entity.Make + entity.Model
                     };
+                    
                 }
             }
             catch (Exception ex)

@@ -66,6 +66,7 @@ namespace DMSUnitTests
         public void VehicleService_GetById_WithNonexistentId_ShouldReturnNull()
         {
             //Act
+            Id = 5;
             var vehicle = _sut.GetById(Id);
             //Assert
             Assert.IsNull(vehicle);

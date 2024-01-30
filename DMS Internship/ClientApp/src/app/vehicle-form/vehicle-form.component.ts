@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { VehicleInfo } from '../VehicleInfo';
 import { VehicleService } from '../vehicle.service';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class VehicleFormComponent implements OnInit{
 
-  constructor(private vehicleService: VehicleService, private http: HttpClient) {
+  constructor(private vehicleService: VehicleService, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     // ...
   }
 
@@ -34,6 +35,8 @@ export class VehicleFormComponent implements OnInit{
 
     this.vehicleService.addVehicle(newVehicle).subscribe(() => {
       //this.vehicleInfo = data;
+      window.alert('Vehicle added successfully');
+      this.router.navigate(['fetch-data']);
     });
   }
 }

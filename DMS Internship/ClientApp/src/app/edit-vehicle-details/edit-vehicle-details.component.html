@@ -1,0 +1,38 @@
+
+<h1>Vehicle Form</h1>
+
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="my-1">
+    <label for="exampleFormControlInput1" class="form-label" align="center">Make</label>
+    <input type="Make"
+           class="form-control"
+           id="exampleFormControlInput1"
+           name="Make : "
+           [(ngModel)]="inputValues.Make">
+  </div>
+
+  <div class="my-1">
+    <label for="exampleFormControlInput2" class="form-label" align="center">Model</label>
+    <input type="Model"
+           class="form-control"
+           id="exampleFormControlInput2"
+           name="Model : "
+           [(ngModel)]="inputValues.Model">
+  </div>
+
+  <div class="my-1">
+    <label for="exampleFormControlInput3" class="form-label" align="center">Price</label>
+    <input type="Price"
+           class="form-control"
+           id="exampleFormControlInput3"
+           name="Price : "
+           [(ngModel)]="inputValues.Price">
+  </div>
+
+  <button class="btn btn-primary" (click)="addVehicle()">
+    {{ editMode ? 'Update Record' : 'Add Record' }}
+  </button>
+
+
+</form>

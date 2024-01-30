@@ -1,0 +1,26 @@
+
+<h1>Search</h1>
+
+
+<table class="table table-striped" *ngIf="vehicleModels.length > 0">
+  <thead>
+    <tr>
+      <th>Vehicle ID</th>
+      <th>Series</th>
+      <th>PriceInclusive</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let vehicle of vehicleModels">
+      <td>{{ vehicle.id }}</td>
+      <td>{{ vehicle.series }}</td>
+      <td>{{ vehicle.priceInclusive | currency }}</td>
+      <td>{{ vehicle.price | currency }}</td>
+
+  </tbody>
+</table>
+
+<p *ngIf="vehicleModels.length === 0">No data available.</p>
+

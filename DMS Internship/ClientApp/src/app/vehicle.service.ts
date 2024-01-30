@@ -17,6 +17,10 @@ export class VehicleService {
     return this.http.get<VehicleModel[]>(`${this.baseUrl}/vehicle`);//https://localhost:7120/Vehicle
   }
 
+  getById(id: number): Observable<VehicleModel[]> {
+    return this.http.get<VehicleModel[]>(`${this.baseUrl}/vehicle/${id}`);
+  }
+
   searchVehicles(id: number): Observable<VehicleModel[]> {
     return this.http.get<VehicleModel[]>(`${this.baseUrl}/vehicle/${id}`);
   }

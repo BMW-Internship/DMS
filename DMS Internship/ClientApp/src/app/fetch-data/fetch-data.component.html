@@ -1,19 +1,27 @@
 <h1>BMW Dealership Management System</h1>
 
 <!--<input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search by Make or Model">-->
-<section>
+<!--<section>
   <form>
-    <input type="text" placeholder="Search By ID" [(ngModel)]="vehicleId.id">
+    <input type="text" placeholder="Search" id=" vehicleId" [(ngModel)]="vehicleId.Id">
     <button type="button" (click)="searchVehicle()">Search</button>
-  </form>
-</section>
 
-<section>
-  <form>
-    <input type="text" placeholder="Update By ID" [(ngModel)]="vehicleId.id">
-    <button type="button" (click)="updateVehicle()">Update</button>
   </form>
-</section>
+</section>-->
+<label for="appFilter">Search Text</label>
+<input type="email" id="appFilter" aria-describedby="vehicleId"
+       [(ngModel)]="searchText" 
+       autofocus>
+    
+
+  
+<!--<section>
+  <form>
+    <input type="text" placeholder="Delete By ID" [(ngModel)]="vehicleId.series">
+    <button type="button" (click)="DeleteVehicle()">Delete</button>
+  </form>
+</section>-->
+
 
 <table class="table table-striped" *ngIf="vehicleModels.length > 0">
   <thead>
@@ -25,12 +33,31 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let vehicle of vehicleModels">
+    <tr *ngFor="let vehicle of vehicleModels|appfilter:searchText">
       <td>{{ vehicle.id }}</td>
       <td>{{ vehicle.series }}</td>
       <td>{{ vehicle.priceInclusive | currency }}</td>
       <td>{{ vehicle.price | currency }}</td>
+
+      <td>
+        <section>
+          <form>
+
+            <button type="button" (click)="DeleteVehicle(vehicle.id)">Delete</button>
+          </form>
+        </section>
+      </td>
+      <td>
+        <section>
+          <form>
+
+            <button type="button" (click)="editVehicle(vehicle.id)">Edit</button>
+
+          </form>
+        </section>
+      </td>
     </tr>
+
   </tbody>
 </table>
 
