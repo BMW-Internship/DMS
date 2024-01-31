@@ -61,7 +61,9 @@ export class FetchDataComponent implements OnInit {
   DeleteVehicle(Id: any) {
 
     this.vehicleService.deleteVehicle(Id).subscribe((result: any) => {
-      console.log(result);
+      //console.log(result);
+      window.alert('Vehicle updated successfully');
+      this.router.navigate(['fetch-data']);
     
     });
   }
